@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Portfolio Marc Hoarau</title><meta content="Marc Hoarau, UX Designer : interfaces critiques et recherche utilisateur." name="description"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;500;600&amp;family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,700;0,800;1,400&amp;display=swap" rel="stylesheet"/><style>
+/* Mise en page : un dossier d'essai. Colonne de lecture de 68 caractères, rail d'intitulés à gauche en mono, comme les sections d'un rapport de test. */
+:root {
+  --bg: #F3F5F4;
+  --surface: #FFFFFF;
+  --ink: #142033;
+  --ink-2: #4A5567;
+  --line: #D7DCDE;
+  --accent: #0E6A5B;
+  --accent-soft: #DFEEE9;
+  --caution: #845400;
+  --caution-soft: #FAEFD9;
+  --critical: #A1252F;
+  --critical-soft: #F7E1E3;
+  --sky: #DCE6EF;
+  --night: #121B27;
+  --font: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --measure: 68ch;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F141B; --surface: #161D26; --ink: #E6EAEE; --ink-2: #A5AEBA; --line: #29323E;
+    --accent: #63C7B1; --accent-soft: #15302A; --caution: #E8B25A; --caution-soft: #33291A;
+    --critical: #F08B93; --critical-soft: #3A1F23; --sky: #1E2A37; --night: #0A0F15;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F141B; --surface: #161D26; --ink: #E6EAEE; --ink-2: #A5AEBA; --line: #29323E;
+  --accent: #63C7B1; --accent-soft: #15302A; --caution: #E8B25A; --caution-soft: #33291A;
+  --critical: #F08B93; --critical-soft: #3A1F23; --sky: #1E2A37; --night: #0A0F15;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+[tabindex="-1"]:focus { outline: none; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.15; text-wrap: balance; font-weight: 800; letter-spacing: -0.012em; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--mono); }
+.label { font-family: var(--mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+.muted { color: var(--ink-2); }
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--bg); padding: 10px 14px; z-index: 30; }
+.skip:focus { left: 16px; top: 16px; }
+
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* ---------- barre du haut ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 800; }
+.brand .mark { width: 30px; height: 30px; border-radius: 8px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-family: var(--mono); font-size: 0.78rem; font-weight: 600; }
+.nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav a { color: var(--ink-2); text-decoration: none; font-size: 0.95rem; padding: 8px 10px; border-radius: 8px; min-height: 40px; display: inline-flex; align-items: center; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); background: var(--surface); }
+@media (max-width: 560px) { .nav .hide-s { display: none; } .brand .name { display: none; } .nav { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; min-width: 0; } .nav::-webkit-scrollbar { display: none; } .nav a { padding: 8px 7px; font-size: 0.9rem; white-space: nowrap; } .top .wrap { gap: 10px; } }
+
+/* ---------- accueil ---------- */
+.hero { padding-block: 72px 56px; max-width: 46rem; }
+.hero h1 { font-size: clamp(2.3rem, 5.2vw, 3.9rem); margin-top: 14px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { margin-top: 22px; font-size: 1.2rem; max-width: 56ch; }
+.hero .now { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.95rem; color: var(--ink-2); }
+.hero .now span { display: inline-flex; align-items: center; gap: 8px; }
+.hero .now .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+@media (max-width: 860px) { .hero { padding-block: 44px 36px; } }
+
+.section-h { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-block: 28px 18px; border-top: 2px solid var(--ink); }
+.section-h h2 { font-size: 1.6rem; }
+
+.cases { display: grid; gap: 22px; padding-bottom: 72px; }
+.case-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
+.case-card:hover { border-color: var(--ink-2); transform: translateY(-2px); }
+.case-card .vis { background: var(--sky); min-height: 260px; display: grid; place-items: center; overflow: hidden; }
+.case-card .vis svg { width: 100%; height: 100%; }
+.case-card .vis.photo { display: block; }
+.case-card .vis.photo img { width: 100%; height: 100%; object-fit: cover; }
+.case-card .vis.phone { padding: 22px 0 0; align-items: end; }
+.case-card .vis.phone img { width: 46%; max-width: 230px; border-radius: 18px 18px 0 0; box-shadow: 0 0 0 1px var(--line); }
+.case-card .txt { padding: 26px 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.case-card h3 { font-size: 1.55rem; }
+.case-card .go { margin-top: auto; color: var(--accent); font-weight: 700; display: inline-flex; gap: 6px; align-items: center; }
+.facts { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font-size: 0.92rem; color: var(--ink-2); }
+.facts b { color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .case-card { grid-template-columns: 1fr; } .case-card .vis { min-height: 200px; } }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; }
+.tags li { font-size: 0.82rem; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink-2); }
+
+/* ---------- à propos ---------- */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 56px; padding-bottom: 72px; }
+.about h3 { font-size: 1.05rem; margin-bottom: 10px; }
+.about .block { display: flex; flex-direction: column; gap: 10px; }
+.about ul:not(.tags) { list-style: none; display: grid; gap: 10px; }
+.about ul:not(.tags) li { padding-left: 16px; position: relative; }
+.about ul:not(.tags) li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 2px; background: var(--accent); }
+.about .intro { font-size: 1.12rem; }
+@media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+
+.contact { background: var(--ink); color: var(--bg); }
+.contact .wrap { padding-block: 48px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: end; }
+.contact h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); }
+.contact p { color: color-mix(in srgb, var(--bg) 78%, var(--ink)); margin-top: 10px; max-width: 52ch; }
+.contact dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 18px; font-size: 1rem; }
+.contact dt { font-family: var(--mono); font-size: 0.75rem; letter-spacing: .08em; text-transform: uppercase; opacity: .75; padding-top: 4px; }
+.contact dd { margin: 0; overflow-wrap: anywhere; }
+.contact a { color: var(--bg); }
+.contact button.copy { margin-left: 8px; font: inherit; font-size: 0.8rem; color: var(--ink); background: var(--bg); border: 0; border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+@media (max-width: 760px) { .contact .wrap { grid-template-columns: 1fr; } }
+footer.foot { padding-block: 22px; font-size: 0.85rem; color: var(--ink-2); }
+
+/* ---------- étude de cas ---------- */
+.case-top { padding-block: 26px 0; }
+.back { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); text-decoration: none; font-size: 0.95rem; min-height: 40px; }
+.back:hover { color: var(--ink); }
+.cover { margin-top: 10px; border-radius: var(--radius); overflow: hidden; background: var(--sky); border: 1px solid var(--line); }
+.cover svg { display: block; width: 100%; height: auto; }
+.cover img { width: 100%; }
+.duo-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px; background: var(--line); }
+.duo-grid > div { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+.duo-grid img { width: 100%; height: 100%; object-fit: cover; }
+.tag-img { position: absolute; left: 12px; top: 12px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: .08em; text-transform: uppercase; background: rgba(10,15,21,.78); color: #FFFFFF; padding: 4px 9px; border-radius: 6px; }
+@media (max-width: 560px) { .duo-grid { grid-template-columns: 1fr; } }
+.cover figcaption { font-size: 0.82rem; color: var(--ink-2); padding: 8px 14px; background: var(--surface); border-top: 1px solid var(--line); }
+.idrow { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 28px; align-items: center; padding-block: 22px 22px; }
+.who { display: flex; flex-wrap: wrap; gap: 10px; }
+.who span { display: inline-flex; flex-direction: column; padding: 8px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-weight: 700; font-size: 0.98rem; line-height: 1.25; }
+.who small { font-family: var(--mono); font-weight: 400; font-size: 0.7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.dur { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: 0.95rem; }
+.case-title { font-size: clamp(2rem, 4.6vw, 3.2rem); padding-block: 10px 6px; max-width: 36ch; }
+.case-sub { font-size: 1.2rem; color: var(--ink-2); max-width: 60ch; }
+
+.sec { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 12px 36px; padding-block: 34px; border-top: 1px solid var(--line); }
+.sec > .label { padding-top: 6px; }
+.sec .body { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.sec .body > p, .sec .body > .prose { max-width: var(--measure); }
+.sec h2 { font-size: 1.45rem; }
+.sec h3 { font-size: 1.15rem; }
+@media (max-width: 760px) { .sec { grid-template-columns: 1fr; padding-block: 26px; } }
+.sec.first { border-top: 2px solid var(--ink); margin-top: 18px; }
+
+.rolegrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px 36px; }
+.rolegrid h3 { font-size: 1rem; margin-bottom: 4px; }
+@media (max-width: 640px) { .rolegrid { grid-template-columns: 1fr; } }
+
+.team { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; list-style: none; }
+.team li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.team b { font-size: 0.98rem; }
+.team p { font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; }
+.team li.me { border-color: transparent; background: var(--accent-soft); }
+.team li.me b { color: var(--accent); }
+.team li.me .label { color: var(--accent); }
+
+.did { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px 40px; align-items: start; }
+.did ul { list-style: none; display: grid; gap: 12px; }
+.did ul li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; }
+.did ul li svg { margin-top: 3px; color: var(--accent); }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.kpi svg { color: var(--accent); }
+.kpi b { font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.kpi span { font-size: 0.86rem; color: var(--ink-2); line-height: 1.35; }
+@media (max-width: 860px) { .did { grid-template-columns: 1fr; } }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.gallery figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.gallery img { border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
+.gallery figcaption { font-size: 0.82rem; color: var(--ink-2); }
+.gallery.phones { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 760px; }
+@media (max-width: 520px) { .gallery.phones { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.gallery.docs { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 760px; }
+.gallery.docs img { box-shadow: 0 1px 0 var(--line), 0 10px 24px -18px rgba(0,0,0,.35); }
+@media (max-width: 520px) { .gallery.docs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.links { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; list-style: none; }
+.links a { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; color: var(--ink); min-height: 44px; }
+.links a:hover { border-color: var(--accent); }
+.links b { display: inline-flex; gap: 6px; align-items: center; }
+.links span { font-size: 0.86rem; color: var(--ink-2); }
+
+.steps { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; counter-reset: step; }
+.steps li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.steps li .n { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); font-weight: 600; }
+.steps li b { font-size: 1rem; }
+.steps li p { font-size: 0.92rem; color: var(--ink-2); line-height: 1.5; }
+
+.process { display: grid; grid-template-columns: 2fr 2fr 3fr; gap: 10px; }
+.phase { display: flex; flex-direction: column; gap: 8px; }
+.phase > .label { padding-bottom: 6px; border-bottom: 2px solid var(--ink); color: var(--ink); }
+.phase ol { list-style: none; display: grid; gap: 8px; }
+.phase li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; grid-template-columns: 1.8rem minmax(0, 1fr); gap: 6px; font-size: 0.93rem; line-height: 1.45; }
+.phase li .n { font-family: var(--mono); color: var(--accent); font-weight: 600; }
+@media (max-width: 860px) { .process { grid-template-columns: 1fr; } }
+
+.real { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.real .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.real h3 { font-size: 1.25rem; }
+.real dl { margin: 0; display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 10px 18px; }
+.real dt { font-weight: 700; }
+.real dt.res-dt { color: var(--accent); }
+.real dd.res-dd b { color: var(--accent); }
+.real dd { margin: 0; max-width: var(--measure); }
+.real dd ul { list-style: none; display: grid; gap: 8px; }
+.real dd ul li { padding-left: 14px; position: relative; }
+.real dd ul li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 2px; background: var(--ink-2); }
+@media (max-width: 640px) { .real dl { grid-template-columns: 1fr; gap: 4px; } .real dd { margin-bottom: 8px; } }
+
+.conds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.conds div { border-radius: 10px; padding: 10px 12px; font-size: 0.88rem; line-height: 1.35; }
+.conds .c1 { background: #FFF6D8; color: #3B2E00; }
+.conds .c2 { background: #E9E2D3; color: #2B2417; }
+.conds .c3 { background: #0E1622; color: #D8E0EA; }
+.conds b { display: block; font-size: 0.95rem; }
+@media (max-width: 520px) { .conds { grid-template-columns: 1fr; } }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.badge.conf { background: var(--bg); color: var(--ink-2); border: 1px dashed var(--ink-2); }
+.badge.ok { background: var(--accent-soft); color: var(--accent); }
+
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.94rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td.code { font-family: var(--mono); font-weight: 600; white-space: nowrap; color: var(--accent); }
+td .yes { color: var(--accent); font-weight: 700; }
+.sev { display: inline-block; font-family: var(--mono); font-weight: 600; font-size: 0.8rem; padding: 2px 8px; border-radius: 6px; white-space: nowrap; }
+.sev.s4 { background: var(--critical-soft); color: var(--critical); }
+.sev.s3 { background: var(--caution-soft); color: var(--caution); }
+.sev.s2 { background: var(--bg); color: var(--ink-2); border: 1px solid var(--line); }
+.prio { font-weight: 700; white-space: nowrap; }
+
+.principles { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.principles li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.principles li p { font-size: 0.93rem; color: var(--ink-2); line-height: 1.5; }
+.principles li .crit { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+.principles li .crit li { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .04em; padding: 3px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.formula { font-family: var(--mono); font-size: 0.92rem; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 12px 14px; overflow-wrap: anywhere; }
+.formula b { color: var(--accent); }
+
+.callout { background: var(--accent-soft); border-radius: var(--radius); padding: 18px 20px; max-width: var(--measure); }
+.callout b { color: var(--accent); }
+
+.prios { list-style: none; display: grid; gap: 10px; counter-reset: p; }
+.prios li { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--critical); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; max-width: 78ch; }
+.prios .head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
+.prios .head b { font-size: 1.05rem; }
+.prios .act { font-size: 0.94rem; }
+.prios .act strong { color: var(--accent); }
+.prios q { font-style: italic; }
+
+.findings { display: grid; gap: 14px; max-width: var(--measure); }
+.findings ul { list-style: none; display: grid; gap: 8px; }
+.findings ul li { padding-left: 16px; position: relative; }
+.findings ul li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 2px; background: var(--critical); }
+
+.take { font-size: 1.2rem; line-height: 1.55; max-width: 60ch; border-left: 4px solid var(--ink); padding-left: 18px; }
+
+.app-cta { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 12px; background: var(--ink); color: var(--bg); font-weight: 700; text-decoration: none; }
+.btn:hover { text-decoration: none; opacity: .9; }
+
+.next { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; padding-block: 34px 72px; border-top: 2px solid var(--ink); }
+.next a { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; color: var(--ink); }
+.next a:hover { border-color: var(--accent); }
+.next a b { font-size: 1.1rem; }
+.next a.r { text-align: right; }
+@media (max-width: 560px) { .next { grid-template-columns: 1fr; } .next a.r { text-align: left; } }
+
+
+
+.casenav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding-block: 10px 6px; border-top: 1px solid var(--line); margin-top: 10px; }
+.casenav a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 700; justify-self: start; }
+.casenav a.r { justify-self: end; }
+.casenav a svg { color: var(--accent); flex: none; }
+.casenav a:hover span { color: var(--accent); }
+.casecount { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.next a { flex-direction: row !important; align-items: center; gap: 14px !important; border: 0 !important; background: none !important; padding-inline: 0 !important; }
+.next a > span { display: flex; flex-direction: column; gap: 2px; }
+.next a.r { justify-content: flex-end; }
+.next a svg { flex: none; color: var(--accent); }
+.next a:hover b { color: var(--accent); }
+@media (max-width: 560px) { .next a.r { justify-content: space-between; } }
+
+/* ---------- compétences ---------- */
+.skills-top { padding-block: 40px 8px; display: flex; flex-direction: column; gap: 6px; }
+.skills-top .case-title { font-size: clamp(1.8rem, 4vw, 2.8rem); max-width: 26ch; }
+.skillpanel { margin-top: 28px; border-top: 2px solid var(--ink); padding-top: 22px; }
+.skillpanel.outils { margin-bottom: 72px; }
+.skillhead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 18px; }
+.skillhead h2 { font-size: 1.6rem; }
+.skillgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.outils .skillgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.skillgroup { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.skillgroup h3 { font-size: 1rem; }
+.skillgroup ul { list-style: none; display: grid; gap: 7px; }
+.skillgroup li { padding-left: 16px; position: relative; font-size: 0.95rem; line-height: 1.45; }
+.skillgroup li::before { content: ""; position: absolute; left: 0; top: .68em; width: 7px; height: 2px; background: var(--accent); }
+@media (max-width: 900px) { .skillgrid, .outils .skillgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .skillgrid, .outils .skillgrid { grid-template-columns: 1fr; } }
+
+
+/* ---------- projets ---------- */
+.section-note { margin-top: -6px; margin-bottom: 18px; color: var(--ink-2); }
+.projgroup { margin-top: 28px; border-top: 2px solid var(--ink); padding-top: 22px; }
+.projgroup:last-child { margin-bottom: 72px; }
+.projlist { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.projlist.cases3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; height: 100%; }
+.proj h3 { font-size: 1.08rem; }
+.proj > p:not(.label) { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
+.proj .tags { margin-top: auto; padding-top: 4px; }
+a.proj { color: var(--ink); text-decoration: none; transition: border-color .15s; }
+a.proj:hover { border-color: var(--accent); }
+a.proj .go { margin-top: auto; color: var(--accent); font-weight: 700; display: inline-flex; gap: 6px; align-items: center; }
+@media (max-width: 900px) { .projlist.cases3 { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .projlist { grid-template-columns: 1fr; } }
+
+
+
+.others .subgroup { display: flex; flex-direction: column; gap: 12px; }
+.others .subgroup + .subgroup { margin-top: 26px; }
+.subhead { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.subhead h3 { font-size: 1.2rem; }
+.subhead .label { margin-left: auto; }
+.logo { width: 40px; height: 40px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); display: grid; place-items: center; color: var(--accent); flex: none; overflow: hidden; }
+.logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+/* ---------- en bref (accueil) ---------- */
+.brief { padding-bottom: 72px; display: flex; flex-direction: column; gap: 22px; }
+.brief-lede { font-size: 1.15rem; max-width: 60ch; }
+.brief-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.brief-col { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.brief-col h3 { font-size: 1.05rem; }
+.timeline { list-style: none; display: grid; gap: 14px; }
+.timeline li { display: flex; flex-direction: column; gap: 2px; padding-left: 16px; border-left: 2px solid var(--accent); }
+.timeline .when { font-family: var(--mono); font-size: 0.75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.timeline p { font-size: 0.93rem; color: var(--ink-2); line-height: 1.5; }
+.does { list-style: none; display: grid; gap: 12px; }
+.does li { display: flex; flex-direction: column; gap: 2px; }
+.does p { font-size: 0.93rem; color: var(--ink-2); line-height: 1.5; }
+.brief-links { display: flex; flex-wrap: wrap; gap: 8px 22px; font-weight: 700; }
+@media (max-width: 900px) { .brief-grid { grid-template-columns: 1fr; } }
+/* ---------- page à propos ---------- */
+.about-page { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 28px 40px; margin-top: 18px; padding-bottom: 72px; align-items: start; }
+.about-main { display: flex; flex-direction: column; min-width: 0; }
+.about-page > .intro { grid-column: 1 / -1; font-size: 1.15rem; max-width: 62ch; }
+.about-side { margin-top: 52px; }
+@media (max-width: 860px) { .about-side { margin-top: 0; } }
+.about-main .projgroup:last-child { margin-bottom: 0; }
+.about-side { display: flex; flex-direction: column; gap: 12px; }
+.side-links { list-style: none; display: grid; gap: 6px; }
+.side-links li::before { display: none; }
+.side-links li { padding-left: 0; }
+@media (max-width: 860px) { .about-page { grid-template-columns: 1fr; } }
+
+
+/* ---------- visionneuse du CV ---------- */
+.cvmodal { position: fixed; inset: 0; z-index: 60; background: rgba(8, 12, 18, .78); display: flex; align-items: center; justify-content: center; padding: calc(12px + env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
+.cvmodal[hidden] { display: none; }
+.cvpanel { width: min(920px, 100%); height: 100%; background: var(--surface); border-radius: 14px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px -20px rgba(0,0,0,.6); }
+.cvbar { display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 18px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.cvbar h2 { font-size: 1.05rem; flex: 1; min-width: 0; }
+.cvbar a, .cvbar button { font: inherit; font-weight: 700; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px; border-radius: 10px; cursor: pointer; text-decoration: none; }
+.cvdl { background: var(--ink); color: var(--bg); border: 0; }
+.cvclose { background: transparent; color: var(--ink); border: 1px solid var(--line); width: 42px; justify-content: center; padding: 0 !important; }
+.cvbody { flex: 1; overflow: auto; background: color-mix(in srgb, var(--ink) 10%, var(--surface)); padding: 18px; overscroll-behavior: contain; }
+.cvbody img { width: 100%; max-width: 820px; margin: 0 auto; background: #FFFFFF; box-shadow: 0 6px 24px -10px rgba(0,0,0,.4); border-radius: 4px; }
+.cvmsg { font-size: 0.85rem; color: var(--ink-2); }
+body.cv-open { overflow: hidden; }
+@media (max-width: 520px) { .cvbar .cvdl span { display: none; } .cvbody { padding: 8px; } }
+
+/* ---------- mode édition (visible seulement pour l'auteur) ---------- */
+body.editing [data-k] { outline: 1px dashed color-mix(in srgb, var(--accent) 60%, transparent); outline-offset: 2px; border-radius: 3px; cursor: text; }
+body.editing [data-k]:hover { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+body.editing [data-k]:focus { outline: 2px solid var(--accent); background: color-mix(in srgb, var(--accent) 6%, transparent); }
+body.editing [data-k].changed { outline-style: solid; }
+.editbar { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: calc(100vw - 32px); background: var(--ink); color: var(--bg); padding: 8px; border-radius: 14px; box-shadow: 0 12px 32px -12px rgba(0,0,0,.45); font-size: 0.92rem; }
+.editbar button { font: inherit; font-weight: 700; border: 0; border-radius: 10px; min-height: 40px; padding: 0 14px; cursor: pointer; }
+.editbar .primary { background: var(--accent); color: var(--bg); }
+.editbar .primary:disabled { opacity: .5; cursor: default; }
+.editbar .ghost { background: transparent; color: var(--bg); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--bg) 45%, transparent); }
+.editbar .msg { padding: 0 6px; min-width: 0; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="top">
+<div class="wrap">
+<a class="brand" data-view="accueil" href="#accueil"><span aria-hidden="true" class="mark">MH</span><span class="name">Marc Hoarau</span></a>
+<nav aria-label="Navigation principale" class="nav">
+<a href="#accueil">Accueil</a>
+<a href="#projets">Projets</a>
+<a href="#competences">Compétences</a>
+<a href="#apropos">À propos</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<!-- ======================= ACCUEIL ======================= -->
+<div data-page="accueil">
+<div class="wrap">
+<section aria-labelledby="h-hero" class="hero">
+<div>
+<p class="label">UX Designer · Montpellier</p>
+<h1 id="h-hero">UX Design <em>et recherche utilisateur</em></h1>
+<p class="now"><span><i aria-hidden="true" class="dot"></i>Consultant facteurs humains et UX researcher, Human Design Group, pour Airbus</span></p>
+<p class="lede">Ergonome de formation, je conçois et j'évalue des interfaces de systèmes complexes : applications de cockpit pour Airbus, de l'audit, en passant par la conception, jusqu'à la validation devant les autorités européenne et américaine de l'aviation. J'apporte cette même rigueur aux produits grand public, de la recherche utilisateur jusqu'aux écrans.</p>
+</div>
+</section>
+<div class="section-h"><h2 id="etudes">Études de cas</h2><span class="label">3 projets</span></div>
+<p class="section-note"><span>Retrouvez l'ensemble des travaux dans la section</span> <a href="#projets">Projets</a>.</p>
+<div class="cases">
+<a class="case-card" href="#mission">
+<div class="vis photo"><img alt="Un pilote consulte le module PERFO de Mission+ en thème clair sur une tablette, dans le cockpit" height="800" loading="lazy" src="assets/mission-light.webp" width="1200"/></div>
+<div class="txt">
+<p class="label">Airbus · Skywise · application iOS · depuis 2023</p>
+<h3>Mission+, l'application de vol des pilotes Airbus</h3>
+<p>Co-conception d'un light theme lisible en plein soleil, évaluation du module Library en full flight simulator et de l'IHM PERFO avant validation EASA · FAA.</p>
+<p class="facts"><span class="label">Équipe</span><span>UX/UI designer · ingénieurs aéronautiques · pilotes · product manager · développeurs</span></p>
+<ul class="tags"><li>IHM</li><li>Facteurs humains</li><li>Tests utilisateurs</li><li>Contrastes</li><li>Validation EASA · FAA</li></ul>
+<span class="go"><span>Lire l'étude de cas </span><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</div>
+</a>
+<a class="case-card" href="#patrimoine">
+<div class="vis phone"><img alt="Écran d'accueil de Patrimoine : alerte sur la cible d'investissement et enveloppes loisirs et investissement" height="1688" loading="lazy" src="assets/patrimoine-accueil.webp" width="780"/></div>
+<div class="txt">
+<p class="label">Projet personnel · application mobile · 2026</p>
+<h3>Patrimoine, une application de budget</h3>
+<p>Une application pensée pour l'usage de mon entourage, qui répond à la question : combien puis-je investir ce mois-ci ?</p>
+<p class="facts"><span class="label">Équipe</span><span>Projet solo : conception, design et code (IA agentique - Claude Code)</span></p>
+<ul class="tags"><li>UX mobile</li><li>Parcours</li><li>Design system</li><li>Accessibilité</li><li>Prototype codé</li></ul>
+<span class="go"><span>Lire l'étude de cas </span><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</div>
+</a>
+<a class="case-card" href="#datebetter">
+<div class="vis photo"><img alt="Page d'accueil du site DateBetter : « Optimise ton profil Tinder »" height="774" loading="lazy" src="assets/datebetter-site.webp" width="1600"/></div>
+<div class="txt">
+<p class="label">Mission indépendante · application mobile · mars – avril 2026</p>
+<h3>DateBetter, comprendre pourquoi un concept jugé utile ne convertit pas</h3>
+<p>Test utilisateur du parcours complet, de la page d'accueil aux résultats d'analyse, et recommandations priorisées pour le fondateur.</p>
+<p class="facts"><span class="label">Équipe</span><span>Seul UX designer · fondateur de DateBetter · 10 participants</span></p>
+<ul class="tags"><li>Tests utilisateurs</li><li>B2C</li><li>SEQ · SUS · NPS</li><li>Recommandations</li></ul>
+<span class="go"><span>Lire l'étude de cas </span><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</div>
+</a>
+</div>
+<div class="section-h" id="enbref"><h2>En bref</h2><span class="label">Parcours et compétences</span></div>
+<section aria-label="En bref" class="brief">
+<p class="brief-lede">Comprendre les informations, faire confiance à un système qui manipule des données sensibles, décider vite sans se tromper grâce à une interface simple et intuitive : ce sont les enjeux du cockpit, et ceux d'une application bancaire.</p>
+<div class="brief-grid">
+<div class="brief-col"><h3>Parcours</h3><ol class="timeline"><li><span class="when">Depuis 2023</span><b>Consultant facteurs humains et UX researcher</b><p>Human Design Group, pour Airbus : Mission+, intégration de l'iPad dans le cockpit A350, procédures présentées à l'EASA et à la FAA.</p></li><li><span class="when">2023</span><b>UX designer et ergonome</b><p>Entre Sportifs : application mobile pour sportifs, des entretiens aux tests utilisateurs.</p></li><li><span class="when">2022</span><b>Master 2 Ergonomie cognitive et facteurs humains</b><p>Université Toulouse – Jean Jaurès, mention très bien.</p></li></ol></div>
+<div class="brief-col"><h3>Ce que je fais</h3><ul class="does"><li><b>Recherche utilisateur</b><p>Entretiens, observations, focus groups, tests utilisateurs en conditions réelles.</p></li><li><b>Conception UX/UI</b><p>Parcours, architecture de l'information, wireframes, maquettes et composants dans Figma.</p></li><li><b>Évaluation et mesure</b><p>Critères ergonomiques, SUS, SEQ, NPS, confiance perçue, recommandations priorisées.</p></li><li><b>Accessibilité et lisibilité</b><p>Contrastes mesurés, hiérarchie de l'information, prévention des erreurs.</p></li></ul></div>
+<div class="brief-col"><h3>Comment je travaille</h3><ul class="does"><li><b>En équipe produit agile</b><p>SAFe et Scrum, en sprints et en PI planning, avec product managers, développeurs et designers.</p></li><li><b>Dans un cadre réglementé</b><p>Résultats présentés à l'EASA et à la FAA, avec des recommandations argumentées.</p></li><li><b>Avec les bons outils</b><p>Figma, Jira, Confluence, IA agentique (Claude Code, GitHub Copilot).</p></li></ul></div>
+</div>
+<p class="brief-links"><a href="#competences">Toutes mes compétences</a><a href="#apropos">Mon parcours</a><a href="#projets">Tous les projets</a></p>
+</section>
+</div>
+</div>
+<!-- ======================= MISSION+ ======================= -->
+<article aria-labelledby="t-mission" data-page="mission" hidden="">
+<div class="wrap">
+<div class="case-top"><a class="back" href="#accueil"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Toutes les études de cas</a></div>
+<nav aria-label="Navigation entre études de cas" class="casenav"><a aria-label="Étude précédente : DateBetter" href="#datebetter"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M15 18l-6-6 6-6"></path></svg><span>DateBetter</span></a><span class="casecount">1 / 3</span><a aria-label="Étude suivante : Patrimoine" class="r" href="#patrimoine"><span>Patrimoine</span><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M9 18l6-6-6-6"></path></svg></a></nav>
+<figure class="cover duo" style="margin-inline:0">
+<div class="duo-grid">
+<div><img alt="Le module PERFO de Mission+ en thème de base, sombre, sur une tablette tenue dans le cockpit" height="500" src="assets/mission-dark.webp" width="750"/><span class="tag-img">Thème de base</span></div>
+<div><img alt="Le même écran du module PERFO en light theme, lisible malgré la lumière du cockpit" height="800" src="assets/mission-light.webp" width="1200"/><span class="tag-img">Light theme</span></div>
+</div>
+<figcaption>Le module PERFO de Mission+ dans ses deux thèmes. Pour des raisons de confidentialité, seuls des visuels publics sont présentés : photos © Airbus, issues des pages publiques Mission+.</figcaption>
+</figure>
+<div class="idrow">
+<div class="who"><span><small>Client</small>Airbus · Skywise</span><span><small>Employeur</small>Human Design Group</span></div>
+<span class="dur"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5M9.5 2.5h5"></path></svg><span>2023 – aujourd'hui</span></span>
+</div>
+<p class="label">Étude de cas · Mission+</p>
+<h1 class="case-title" id="t-mission">Rendre une application de cockpit lisible, utilisable et validée par l'EASA et la FAA</h1>
+<p class="case-sub">Mission+ est l'Electronic Flight Bag d'Airbus. J'y conduis les évaluations avec les pilotes et je transforme les résultats en recommandations de conception, que je présente aussi aux autorités de l'aviation.</p>
+<section aria-labelledby="m-role" class="sec first">
+<p class="label" id="m-role">Rôle</p>
+<div class="body rolegrid">
+<div><h3>Mon rôle</h3><p>Human Factors Specialist et UX researcher, consultant Human Design Group pour Airbus. Je conçois les protocoles, conduis les passations, analyse et restitue.</p></div>
+<div><h3>Vue d'ensemble</h3><p>Trois réalisations : la co-conception du light theme, l'évaluation du module Library en full flight simulator et celle de l'IHM du module PERFO avant sa mise sur le marché.</p></div>
+</div>
+</section>
+<section aria-labelledby="m-team" class="sec">
+<p class="label" id="m-team">Équipe</p>
+<div class="body">
+<p>Une équipe produit en agile à l'échelle (SAFe), organisée en équipes Scrum. Mes tests et mes recommandations s'intègrent au cycle de conception et de développement.</p>
+<ul class="team">
+<li class="me"><span class="label">Ma place</span><b>Human Factors Specialist</b><p>Protocoles, passations, analyse, recommandations, restitution aux autorités.</p></li>
+<li><span class="label">Design</span><b>UX/UI designer</b><p>Conçoit les écrans et le design system, et intègre les recommandations.</p></li>
+<li><span class="label">Utilisateurs</span><b>Pilotes</b><p>Participent aux tests et valident les recommandations en convergence meeting.</p></li>
+<li><span class="label">Métier</span><b>Ingénieurs aéronautiques</b><p>Garants des procédures, des calculs et des connaissances système.</p></li>
+<li><span class="label">Produit</span><b>Product manager</b><p>Arbitre les recommandations dans la feuille de route globale du produit.</p></li>
+<li><span class="label">Réalisation</span><b>Développeurs et Business Owner</b><p>Destinataires du rapport final, avec le reste de l'équipe.</p></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="m-tags" class="sec">
+<p class="label" id="m-tags">Méthodes</p>
+<div class="body"><ul class="tags"><li>IHM</li><li>Facteurs humains</li><li>Tests utilisateurs</li><li>Contrastes et lisibilité</li><li>Validation EASA · FAA</li></ul></div>
+</section>
+<section aria-labelledby="m-did" class="sec">
+<p class="label" id="m-did">Ce que j'ai fait</p>
+<div class="body">
+<div class="did">
+<ul>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Mené une étude expérimentale sur les seuils de contraste avec 20 participants, dans trois conditions de luminosité de vol.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Vérifié les couleurs du light theme au regard de la réglementation aéronautique et du color coding Airbus.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Évalué le module Library en full flight simulator : 4 équipages, 3 vols complets chacun.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Présenté les résultats à l'EASA et à la FAA, et évalué l'IHM PERFO avant sa mise sur le marché.</span></li>
+</ul>
+<div class="kpis">
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><rect height="7" rx="1.5" width="7" x="3" y="3"></rect><rect height="7" rx="1.5" width="7" x="14" y="3"></rect><rect height="7" rx="1.5" width="7" x="3" y="14"></rect></svg><b>3</b><span>modules évalués</span></div>
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><circle cx="17" cy="9" r="2.6"></circle><path d="M15.5 14.2c3 .2 5.5 2.6 5.5 5.8"></path></svg><b>8</b><span>pilotes en full flight simulator</span></div>
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg><b>2</b><span>autorités : EASA et FAA</span></div>
+</div>
+</div>
+<h3>Visuels publics Airbus</h3>
+<ul class="links">
+<li><a href="https://www.skywise.com/en/digital-solutions/flight-operations/mission" rel="noopener" target="_blank"><b>Mission+</b><span>Présentation de l'application · © Airbus</span></a></li>
+<li><a href="https://www.skywise.com/en/digital-solutions/flight-operations/mission/mission-perfo" rel="noopener" target="_blank"><b>Mission+ PERFO</b><span>Calculs de performance · © Airbus</span></a></li>
+<li><a href="https://www.skywise.com/en/digital-solutions/flight-operations/mission/mission-flight" rel="noopener" target="_blank"><b>Mission+ FLIGHT</b><span>Dossier de vol électronique · © Airbus</span></a></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="m-ctx" class="sec">
+<p class="label" id="m-ctx">Contexte et objectifs</p>
+<div class="body">
+<p>Mission+ est la nouvelle application d'Airbus pour les pilotes (EFB). Elle regroupe les calculs de performance, le dossier de vol, les cartes et la documentation. Une compagnie peut l'utiliser avec les modules de son choix ou en tout-en-un.</p>
+<p>Un problème de conception peut avoir un impact sur la sécurité du vol. Chaque module doit donc être validé par une évaluation Facteurs Humains puis par l'EASA et la FAA avant sa commercialisation.</p>
+</div>
+</section>
+<section aria-labelledby="m-proc" class="sec">
+<p class="label" id="m-proc">Démarche</p>
+<div class="body">
+<h2>Le processus suivi pour chaque test</h2>
+<p>Chaque évaluation passe par sept étapes. Les réalisations présentées ensuite détaillent leurs propres étapes.</p>
+<div class="process">
+<div class="phase"><span class="label">Préparer</span><ol>
+<li><span class="n">1</span><span>Grille d'objectifs : critères ergonomiques, charge mentale, attention, conscience de la situation.</span></li>
+<li><span class="n">2</span><span>Scénarios de vol conçus pour tester chacun de ces objectifs.</span></li>
+</ol></div>
+<div class="phase"><span class="label">Tester</span><ol>
+<li><span class="n">3</span><span>Passations avec les pilotes.</span></li>
+<li><span class="n">4</span><span>Analyse des résultats, objectif par objectif.</span></li>
+</ol></div>
+<div class="phase"><span class="label">Restituer</span><ol>
+<li><span class="n">5</span><span>Rapport préliminaire : observations, analyse, recommandations par objectif et sujets observés en plus.</span></li>
+<li><span class="n">6</span><span>Convergence meeting : les pilotes valident les recommandations.</span></li>
+<li><span class="n">7</span><span>Rapport final pour le designer, les développeurs, le product manager, les ingénieurs et le Business Owner.</span></li>
+</ol></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="m-r1" class="sec">
+<p class="label" id="m-r1">Réalisation 1</p>
+<div class="body">
+<div class="real">
+<div class="head"><h3>Co-conception du light theme</h3><span class="badge conf">Détails confidentiels</span></div>
+<dl>
+<dt>Problème</dt><dd>Le design sombre de Mission+ devenait difficile à lire en vol par forte luminosité. Des compagnies aériennes et des pilotes internes avaient demandé un thème adapté à ces conditions.</dd>
+<dt>Étape 1 · Mesurer</dt><dd><span>Étude expérimentale avec 20 participants sur les seuils de contraste minimaux, police sur fond et fond sur fond, dans trois conditions rencontrées en vol.
+              </span><div class="conds" style="margin-block:10px"><div class="c1"><b>Soleil de face</b>reflet sur la chemise blanche</div><div class="c2"><b>Soleil trois-quarts dos</b>lumière projetée sur la tablette</div><div class="c3"><b>Nuit</b>obscurité complète</div></div><span>
+              Deux blocs de tâches par condition : toucher le plus de rectangles possible sur des écrans successifs, puis lire des suites de lettres, avec des contrastes et des fonds qui varient d'un écran à l'autre.</span></dd>
+<dt>Étape 2 · Concevoir</dt><dd>À partir des seuils mesurés, l'UX designer a créé dans le design system les équivalents clairs des couleurs du thème de base, pour les modules existants et à venir.</dd>
+<dt>Étape 3 · Vérifier</dt><dd>J'ai revu les couleurs proposées au regard de la réglementation aéronautique et du color coding Airbus.</dd>
+<dt>Étape 4 · Valider</dt><dd>Tests avec 5 pilotes dans les trois conditions : 6 préparations de vol, avec le light theme et le thème de base dans chaque condition. Objectifs : lisibilité, compréhension du color coding, utilisabilité des modules et de l'interface.</dd>
+<dt class="res-dt">Résultat</dt><dd class="res-dd"><b>Intégré au design system</b><br/><span>Les couleurs claires, calées sur les seuils mesurés, servent aux modules existants et futurs et assurent une bonne lisibilité des informations dans toutes les conditions de vol.</span></dd>
+</dl>
+</div>
+</div>
+</section>
+<section aria-labelledby="m-r2" class="sec">
+<p class="label" id="m-r2">Réalisation 2</p>
+<div class="body">
+<div class="real">
+<div class="head"><h3>Évaluation du module Library en full flight simulator</h3><span class="badge conf">Détails confidentiels</span></div>
+<dl>
+<dt>Objectif</dt><dd>Évaluer l'utilisabilité du module Library, qui donne accès à la documentation de l'avion et de la compagnie, ainsi que son intégration avec les autres modules, notamment les calculs de performance.</dd>
+<dt>Protocole</dt><dd>8 pilotes en 4 équipages, 3 vols complets chacun, avec des événements de complexité croissante : trafic aérien, procédures supplémentaires dues à des pannes, feu moteur. Chaque scénario répondait à des objectifs précis de la grille.</dd>
+<dt class="res-dt">Résultat</dt><dd class="res-dd"><b>Présenté aux autorités</b><br/><span>Résultats consolidés et validés avec les pilotes en convergence meeting, que j'ai présentés à l'EASA et à la FAA en vue de la lettre d'agrément attestant que le module est conforme aux standards opérationnels du cockpit.</span></dd>
+</dl>
+</div>
+</div>
+</section>
+<section aria-labelledby="m-r3" class="sec">
+<p class="label" id="m-r3">Réalisation 3</p>
+<div class="body">
+<div class="real">
+<div class="head"><h3>Évaluation de l'IHM du module PERFO</h3><span class="badge ok"><svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-width="2.4" viewbox="0 0 24 24" width="14"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>OSL obtenue</span></span></div>
+<dl>
+<dt>Objectif</dt><dd>Évaluer l'interface du module de performance avant son envoi aux autorités pour l'autorisation de mise sur le marché.</dd>
+<dt>Protocole</dt><dd>Simulateur semi-représentatif, 5 pilotes, 4 préparations de vol de complexité différente aboutissant à des calculs de performance.</dd>
+<dt class="res-dt">Résultat</dt><dd class="res-dd"><b>OSL obtenue, module commercialisé</b><br/><span>Operational Suitability Letter de la FAA et de l'EASA, et autorisation de mise sur le marché.</span></dd>
+</dl>
+</div>
+</div>
+</section>
+<section aria-labelledby="m-ana" class="sec">
+<p class="label" id="m-ana">Analyse</p>
+<div class="body">
+<p>Les résultats sont analysés objectif par objectif, à partir de la grille : observations pendant les passations, verbatims des pilotes et mesures recueillies. Chaque constat devient une recommandation argumentée, que les pilotes valident ou ajustent en convergence meeting avant le rapport final.</p>
+</div>
+</section>
+<section aria-labelledby="m-liv" class="sec">
+<p class="label" id="m-liv">Livrables</p>
+<div class="body">
+<p class="muted">Les documents sont la propriété d'Airbus et ne sont pas publiés.</p>
+</div>
+</section>
+<nav aria-label="Étude suivante" class="next"><a href="#datebetter"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M15 18l-6-6 6-6"></path></svg><span><span class="label">Précédente</span><b>DateBetter</b></span></a><a class="r" href="#patrimoine"><span><span class="label">Suivante</span><b>Patrimoine</b></span><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M9 18l6-6-6-6"></path></svg></a></nav>
+</div>
+</article>
+<!-- ======================= PATRIMOINE ======================= -->
+<article aria-labelledby="t-patrimoine" data-page="patrimoine" hidden="">
+<div class="wrap">
+<div class="case-top"><a class="back" href="#accueil"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Toutes les études de cas</a></div>
+<nav aria-label="Navigation entre études de cas" class="casenav"><a aria-label="Étude précédente : Mission+" href="#mission"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M15 18l-6-6 6-6"></path></svg><span>Mission+</span></a><span class="casecount">2 / 3</span><a aria-label="Étude suivante : DateBetter" class="r" href="#datebetter"><span>DateBetter</span><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M9 18l6-6-6-6"></path></svg></a></nav>
+<figure class="cover" style="margin-inline:0">
+<img alt="Le fichier Figma de Patrimoine : les quatorze écrans rangés par parcours, avec la liste des calques et les styles de texte" height="797" src="assets/patrimoine-figma.webp" width="1600"/>
+<figcaption>Le fichier Figma : fondations, composants, et les 14 écrans reliés en prototype.</figcaption>
+</figure>
+<div class="idrow">
+<div class="who"><span><small>Projet</small>Personnel</span><span><small>Support</small>Application mobile</span></div>
+<span class="dur"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><rect height="19" rx="2.5" width="10" x="7" y="2.5"></rect><path d="M11 18.5h2"></path></svg><span>Conception, design et code</span></span>
+</div>
+<p class="label">Étude de cas · Patrimoine</p>
+<h1 class="case-title" id="t-patrimoine">Combien puis-je investir ce mois-ci ?</h1>
+<p class="case-sub">Une application de budget pensée pour l'usage de mon entourage, en mobile, autour de cette seule question. Chacun fixe un budget loisirs et investissement ; l'application l'aide à le tenir.</p>
+<section aria-labelledby="p-role" class="sec first">
+<p class="label" id="p-role">Rôle</p>
+<div class="body rolegrid">
+<div><h3>Mon rôle</h3><p>UX Designer : analyse du besoin, conception des parcours, design dans Figma et application en ligne.</p></div>
+<div><h3>Vue d'ensemble</h3><p>Deux cibles fixées chaque mois, une saisie réduite aux dépenses de loisirs, et une alerte quand le rythme des dépenses menace l'investissement.</p></div>
+</div>
+</section>
+<section aria-labelledby="p-team" class="sec">
+<p class="label" id="p-team">Environnement</p>
+<div class="body">
+<ul class="team">
+<li class="me"><span class="label">Ma place</span><b>Concepteur et designer</b><p>La philosophie d'usage, les parcours, les écrans.</p></li>
+<li><span class="label">Utilisateurs</span><b>Mon entourage</b><p>Le besoin de départ : savoir combien investir chaque mois sans perdre le fil de son budget.</p></li>
+<li><span class="label">Outil</span><b>IA agentique (Claude Code)</b><p>Code réalisé par Claude Code.</p></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="p-tags" class="sec">
+<p class="label" id="p-tags">Méthodes</p>
+<div class="body"><ul class="tags"><li>UX mobile</li><li>Parcours utilisateur</li><li>Design system</li><li>Accessibilité</li><li>Prototype codé</li></ul></div>
+</section>
+<section aria-labelledby="p-did" class="sec">
+<p class="label" id="p-did">Ce que j'ai fait</p>
+<div class="body">
+<div class="did">
+<ul>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Défini une philosophie d'usage en six principes, autour d'un indicateur central : le reste à investir.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Conçu deux parcours clés : la saisie rapide d'une dépense et le point du mois.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Construit dans Figma les fondations, 16 composants à variantes et 14 écrans reliés en prototype.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Mis en ligne l'application, installable sur téléphone, avec les mêmes variables que la maquette.</span></li>
+</ul>
+<div class="kpis">
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg><b>2</b><span>cibles suivies : loisirs et investissement</span></div>
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><rect height="19" rx="2.5" width="10" x="7" y="2.5"></rect><path d="M11 18.5h2"></path></svg><b>14</b><span>écrans</span></div>
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><path d="M12 3l4 4-4 4-4-4zM5 10l4 4-4 4-4-4zM19 10l4 4-4 4-4-4zM12 17l4 4-4 4"></path></svg><b>16</b><span>composants à variantes</span></div>
+</div>
+</div>
+<div class="gallery phones">
+<figure><img alt="Accueil : alerte sur la cible d'investissement, enveloppes loisirs et investissement, accès au point du mois" height="1688" loading="lazy" src="assets/patrimoine-accueil.webp" width="780"/><figcaption>Accueil : les deux cibles sont visibles dès l'ouverture</figcaption></figure>
+<figure><img alt="Saisie rapide : favoris, montant, impact sur l'enveloppe loisirs, catégories et pavé numérique" height="1688" loading="lazy" src="assets/patrimoine-saisie.webp" width="780"/><figcaption>Saisie rapide d'une dépense de loisirs</figcaption></figure>
+<figure><img alt="Point du mois, étape 2 : ranger les opérations importées depuis le relevé bancaire" height="1688" loading="lazy" src="assets/patrimoine-ranger.webp" width="780"/><figcaption>Point du mois : ranger le relevé importé</figcaption></figure>
+</div>
+</div>
+</section>
+<section aria-labelledby="p-ctx" class="sec">
+<p class="label" id="p-ctx">Contexte et objectifs</p>
+<div class="body">
+<p>Les applications bancaires utilisées par l'entourage catégorisent dépenses et revenus et font des projections approximatives : doublons de revenus ou de dépenses, faux schémas récurrents. Elles montrent le passé, opération par opération. Elles ne disent pas, rapidement et précisément, combien il reste à investir.</p>
+<p>Mon entourage voulait savoir ce qu'il peut encore dépenser ce mois-ci sans aller contre ses objectifs d'investissement. L'indicateur central de l'application est donc le reste à investir :</p>
+<p class="formula"><b>reste à investir</b> = revenus − dépenses fixes − dépenses variables − épargne de sécurité − objectifs mensualisés</p>
+</div>
+</section>
+<section aria-labelledby="p-proc" class="sec">
+<p class="label" id="p-proc">Démarche</p>
+<div class="body">
+<h2>Une philosophie d'usage en six principes</h2>
+<p>Chaque principe répond à des critères d'utilisabilité reconnus : ISO 9241-11, critères ergonomiques de Bastien et Scapin, heuristiques de Nielsen, et confiance perçue pour l'acceptabilité.</p>
+<ul class="principles">
+<li><b>Deux cibles fixées au départ</b><p>Un budget loisirs et un montant à investir chaque mois, sur la base des revenus et des dépenses récurrents. Tout le reste de l'application sert à tenir ce cap.</p><ul aria-label="Critères UX" class="crit"><li>Efficacité (ISO 9241-11)</li><li>Compatibilité</li></ul></li>
+<li><b>Saisir le moins possible</b><p>Revenus, loyer, abonnements et épargne programmée sont déclarés une seule fois et s'inscrivent seuls chaque mois. Au quotidien, seules les dépenses de loisirs se saisissent.</p><ul aria-label="Critères UX" class="crit"><li>Efficience (ISO 9241-11)</li><li>Charge de travail : actions minimales</li></ul></li>
+<li><b>Projeter</b><p>L'application compare le rythme des loisirs aux jours restants. Si la tendance menace l'investissement, elle prévient tant qu'il est encore temps, avec le montant disponible par jour.</p><ul aria-label="Critères UX" class="crit"><li>Visibilité de l'état du système</li></ul></li>
+<li><b>L'information clé, tout de suite</b><p>À l'ouverture, l'accueil montre où l'on en est par rapport aux deux cibles, sans aucune action.</p><ul aria-label="Critères UX" class="crit"><li>Charge de travail : densité informationnelle</li></ul></li>
+<li><b>Une dépense en quelques secondes</b><p>Bouton d'ajout toujours accessible, pavé ouvert d'emblée, catégorie proposée, date du jour par défaut, favoris en un geste.</p><ul aria-label="Critères UX" class="crit"><li>Flexibilité et efficacité d'utilisation</li><li>Guidage : feedback immédiat</li></ul></li>
+<li><b>Des données qui restent sur le téléphone</b><p>Application locale protégée par un code, sans identifiants bancaires.</p><ul aria-label="Critères UX" class="crit"><li>Confiance perçue</li></ul></li>
+</ul>
+<h2 style="margin-top:12px">Deux parcours clés</h2>
+<ul class="steps">
+<li><span class="n">Chaque jour</span><b>Saisie rapide</b><p>Depuis n'importe quel écran : montant, catégorie proposée, validation. L'impact sur l'enveloppe s'affiche pendant la saisie.</p></li>
+<li><span class="n">Chaque mois</span><b>Point du mois</b><p>Confirmer les opérations inscrites seules, rattraper les oublis avec le CSV exporté de la banque, ranger les nouvelles opérations, vérifier les deux cibles, répartir le reste entre objectifs et PEA.</p></li>
+<li><span class="n">Architecture</span><b>4 onglets et des réglages</b><p>Accueil, Mouvements, Objectifs, Patrimoine. Comptes, catégories, récurrences et sauvegardes se configurent une fois dans Réglages.</p></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="p-ana" class="sec">
+<p class="label" id="p-ana">Analyse</p>
+<div class="body">
+<h2>Gain d'efficience</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th scope="col">Ce que l'on veut savoir ou faire</th><th scope="col">Application bancaire d'origine</th><th scope="col">Patrimoine</th></tr></thead>
+<tbody>
+<tr><td>Ce qu'il reste pour les loisirs ce mois-ci</td><td>Parcourir les opérations, additionner, déduire les charges à venir</td><td><span class="yes">Affiché à l'ouverture</span></td></tr>
+<tr><td>Ce que l'on peut investir ce mois-ci</td><td>À calculer soi-même</td><td><span class="yes">Affiché à l'ouverture, avec sa décomposition</span></td></tr>
+<tr><td>Si la cible d'investissement sera tenue</td><td>Constaté en fin de mois</td><td><span class="yes">Alerte dès que la tendance la menace</span></td></tr>
+<tr><td>Enregistrer une dépense</td><td>Automatique</td><td>Quelques secondes, uniquement pour les loisirs</td></tr>
+</tbody>
+</table>
+</div>
+<p>La saisie manuelle devient un atout : elle ne concerne que les dépenses choisies, et chaque saisie montre aussitôt son effet sur l'enveloppe.</p>
+</div>
+</section>
+<section aria-labelledby="p-liv" class="sec">
+<p class="label" id="p-liv">Livrables</p>
+<div class="body">
+<p>Une planche de fondations, couleurs, typographie et espacements, en variables Figma. Ce sont les mêmes valeurs que dans le code : chaque variable porte le nom de sa variable CSS, et le thème sombre est documenté à côté du clair. Les règles d'accessibilité y sont écrites : contraste AA, jamais la couleur seule, zones tactiles de 44 px.</p>
+<div class="gallery" style="max-width:520px"><figure><img alt="Planche des fondations : nuancier clair et sombre, échelle typographique en Atkinson Hyperlegible Next, espacements, rayons et règles d'accessibilité" height="1821" loading="lazy" src="assets/patrimoine-fondations.webp" width="960"/><figcaption>Planche des fondations dans Figma</figcaption></figure></div>
+<div class="app-cta">
+<a class="btn" href="https://mfghoarau-cell.github.io/patrimoine/#demo" rel="noopener" target="_blank"><span>Ouvrir l'application </span><svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
+</div>
+</div>
+</section>
+<nav aria-label="Étude suivante" class="next"><a href="#mission"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M15 18l-6-6 6-6"></path></svg><span><span class="label">Précédente</span><b>Mission+</b></span></a><a class="r" href="#datebetter"><span><span class="label">Suivante</span><b>DateBetter</b></span><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M9 18l6-6-6-6"></path></svg></a></nav>
+</div>
+</article>
+<!-- ======================= DATEBETTER ======================= -->
+<article aria-labelledby="t-datebetter" data-page="datebetter" hidden="">
+<div class="wrap">
+<div class="case-top"><a class="back" href="#accueil"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Toutes les études de cas</a></div>
+<nav aria-label="Navigation entre études de cas" class="casenav"><a aria-label="Étude précédente : Patrimoine" href="#patrimoine"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M15 18l-6-6 6-6"></path></svg><span>Patrimoine</span></a><span class="casecount">3 / 3</span><a aria-label="Étude suivante : Mission+" class="r" href="#mission"><span>Mission+</span><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M9 18l6-6-6-6"></path></svg></a></nav>
+<figure class="cover" style="margin-inline:0">
+<img alt="Page d'accueil du site DateBetter : « Optimise ton profil Tinder », avec les boutons Analyser mon profil et Commencer à noter" height="774" src="assets/datebetter-site.webp" width="1600"/>
+<figcaption>La page d'accueil de DateBetter, point de départ du parcours testé.</figcaption>
+</figure>
+<div class="idrow">
+<div class="who"><span><small>Client</small>DateBetter</span><span><small>Cadre</small>Mission indépendante</span></div>
+<span class="dur"><svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5M9.5 2.5h5"></path></svg><span>Mars – avril 2026</span></span>
+</div>
+<p class="label">Étude de cas · DateBetter</p>
+<h1 class="case-title" id="t-datebetter">Pourquoi un concept jugé utile ne se transforme pas en achats</h1>
+<p class="case-sub">DateBetter aide les utilisateurs d'applications de rencontre à améliorer leur profil grâce à une analyse par IA et aux votes de la communauté. Le fondateur m'a confié le test du parcours complet.</p>
+<section aria-labelledby="d-role" class="sec first">
+<p class="label" id="d-role">Rôle</p>
+<div class="body rolegrid">
+<div><h3>Mon rôle</h3><p>UX Designer : conception du protocole, recrutement, passations, analyse et rédaction du rapport remis au fondateur.</p></div>
+<div><h3>Vue d'ensemble</h3><p>Un test utilisateur de la page d'accueil aux résultats, en 5 tâches, avec 10 participants, et des recommandations priorisées par impact sur la conversion.</p></div>
+</div>
+</section>
+<section aria-labelledby="d-team" class="sec">
+<p class="label" id="d-team">Équipe</p>
+<div class="body">
+<ul class="team">
+<li class="me"><span class="label">Ma place</span><b>UX designer, seul sur l'étude</b><p>Protocole, recrutement, passations, analyse, rapport.</p></li>
+<li><span class="label">Commanditaire</span><b>Fondateur de DateBetter</b><p>Pose la question business et reçoit les recommandations.</p></li>
+<li><span class="label">Participants</span><b>10 utilisateurs d'applications de rencontre</b><p>Aucun ne connaissait DateBetter avant le test.</p></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="d-tags" class="sec">
+<p class="label" id="d-tags">Méthodes</p>
+<div class="body"><ul class="tags"><li>Tests utilisateurs</li><li>B2C</li><li>SEQ · SUS · NPS</li><li>Funnel de conversion</li><li>Recommandations priorisées</li></ul></div>
+</section>
+<section aria-labelledby="d-did" class="sec">
+<p class="label" id="d-did">Ce que j'ai fait</p>
+<div class="body">
+<div class="did">
+<ul>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Traduit la question du fondateur en 8 objectifs de test, un par moment du parcours.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Découpé le parcours en 5 tâches calquées sur les étapes du funnel.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Mené 10 sessions de 50 à 70 minutes sur smartphone, en think aloud.</span></li>
+<li><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Classé les problèmes par sévérité et priorisé 10 recommandations.</span></li>
+</ul>
+<div class="kpis">
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><circle cx="17" cy="9" r="2.6"></circle><path d="M15.5 14.2c3 .2 5.5 2.6 5.5 5.8"></path></svg><b>10</b><span>participants</span></div>
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg><b>8</b><span>objectifs de test</span></div>
+<div class="kpi"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24"><path d="M8 6h13M8 12h13M8 18h13"></path><circle cx="3.5" cy="6" r="1"></circle><circle cx="3.5" cy="12" r="1"></circle><circle cx="3.5" cy="18" r="1"></circle></svg><b>5</b><span>tâches</span></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="d-ctx" class="sec">
+<p class="label" id="d-ctx">Contexte et objectifs</p>
+<div class="body">
+<p>Le besoin du fondateur : comprendre pourquoi un concept jugé utile ne se transforme pas en achats. J'ai traduit cette question en 8 objectifs de test, un par moment du parcours.</p>
+<div class="tablewrap" style="max-width:640px">
+<table>
+<thead><tr><th scope="col">Objectif</th><th scope="col">Ce qu'il vérifie</th></tr></thead>
+<tbody>
+<tr><td class="code">O1</td><td>Découvrabilité et compréhension du concept</td></tr>
+<tr><td class="code">O2</td><td>Efficience de l'inscription</td></tr>
+<tr><td class="code">O3</td><td>Fluidité de l'onboarding</td></tr>
+<tr><td class="code">O4</td><td>Création de profil et lancement d'analyse</td></tr>
+<tr><td class="code">O5</td><td>Compréhension et confiance dans l'IA</td></tr>
+<tr><td class="code">O6</td><td>Lisibilité et utilité des résultats</td></tr>
+<tr><td class="code">O7</td><td>Qualité de l'expérience de vote</td></tr>
+<tr><td class="code">O8</td><td>Identification des risques d'abandon</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section aria-labelledby="d-proc" class="sec">
+<p class="label" id="d-proc">Démarche</p>
+<div class="body">
+<figure class="cover" style="margin:0">
+<svg aria-label="Le parcours testé découpé comme un funnel en cinq tâches ; la rupture se situe à la consultation des résultats" role="img" viewbox="0 0 1120 330">
+<rect fill="var(--sky)" height="330" width="1120"></rect>
+<g font-family="Atkinson Hyperlegible Mono, monospace">
+<g fill="var(--ink-2)" font-size="13" letter-spacing="1.2">
+<text x="60" y="52">ENTRÉE</text><text x="300" y="52">ACTIVATION</text><text x="740" y="52">ENGAGEMENT</text><text x="940" y="52">VALEUR</text>
+</g>
+<g stroke="var(--ink)" stroke-width="2"><path d="M60 64h220M300 64h420M740 64h180M940 64h120"></path></g>
+<g font-size="16">
+<rect fill="var(--surface)" height="150" rx="14" stroke="var(--line)" stroke-width="1.5" width="220" x="60" y="96"></rect>
+<text fill="var(--accent)" font-weight="600" x="80" y="130">T1</text><text fill="var(--ink)" x="80" y="160">Inscription</text>
+<rect fill="var(--surface)" height="150" rx="14" stroke="var(--line)" stroke-width="1.5" width="200" x="300" y="96"></rect>
+<text fill="var(--accent)" font-weight="600" x="320" y="130">T2</text><text fill="var(--ink)" x="320" y="160">Onboarding</text>
+<rect fill="var(--surface)" height="150" rx="14" stroke="var(--line)" stroke-width="1.5" width="200" x="520" y="96"></rect>
+<text fill="var(--accent)" font-weight="600" x="540" y="130">T3</text><text fill="var(--ink)" x="540" y="160">Profil et</text><text fill="var(--ink)" x="540" y="182">analyse IA</text>
+<rect fill="var(--surface)" height="150" rx="14" stroke="var(--line)" stroke-width="1.5" width="180" x="740" y="96"></rect>
+<text fill="var(--accent)" font-weight="600" x="760" y="130">T4</text><text fill="var(--ink)" x="760" y="160">Vote sur</text><text fill="var(--ink)" x="760" y="182">d'autres profils</text>
+<rect fill="var(--critical-soft)" height="150" rx="14" stroke="var(--critical)" stroke-width="2" width="120" x="940" y="96"></rect>
+<text fill="var(--critical)" font-weight="600" x="958" y="130">T5</text><text fill="var(--critical)" x="958" y="160">Résultats</text>
+</g>
+<g fill="var(--ink-2)" font-size="13">
+<text x="60" y="282">Parcours jugé facile de T1 à T4</text>
+<text fill="var(--critical)" text-anchor="end" x="1060" y="282">Rupture</text>
+</g>
+</g>
+</svg>
+<figcaption>Le parcours testé, découpé comme un funnel : chaque tâche isole une étape de la conversion.</figcaption>
+</figure>
+<h2 style="margin-top:12px">Trois choix méthodologiques</h2>
+<ul class="steps">
+<li><span class="n">Découpage</span><b>Un parcours découpé comme un funnel</b><p>L'ordre réel d'un nouvel utilisateur : entrée, activation, engagement, valeur. Chaque tâche isole une étape : quand l'expérience casse, on sait où et ce que cela coûte en conversion.</p></li>
+<li><span class="n">Échantillon</span><b>Des participants proches des clients visés</b><p>4 hommes et 6 femmes, 28 ans en moyenne, tous utilisateurs d'applications de rencontre (Tinder, Fruitz, Hinge, Bumble), aucun ne connaissant DateBetter.</p></li>
+<li><span class="n">Terrain</span><b>Sur smartphone</b><p>L'appareil cible, celui où s'utilisent les applications de rencontre. Sessions de 50 à 70 minutes.</p></li>
+</ul>
+<h2 style="margin-top:12px">Méthode et outils</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th scope="col">Outil</th><th scope="col">Pourquoi je l'ai utilisé</th></tr></thead>
+<tbody>
+<tr><td><b>Think aloud</b></td><td>Faire apparaître les incompréhensions et hésitations qu'un simple taux de succès ne montre pas.</td></tr>
+<tr><td><b>Observation des tâches</b></td><td>Localiser où l'expérience casse ; la sévérité vient du croisement fréquence × impact × moment dans le parcours.</td></tr>
+<tr><td><b>SEQ</b> après chaque tâche</td><td>Mesurer la difficulté ressentie juste après l'action, et comparer les tâches entre elles.</td></tr>
+<tr><td><b>SUS</b></td><td>Donner un indice global d'utilisabilité, comparable à la référence du secteur et aux futurs tests.</td></tr>
+<tr><td><b>NPS</b></td><td>Estimer l'adhésion au produit et l'intention de le recommander.</td></tr>
+<tr><td><b>Utilité perçue</b></td><td>Classer les fonctionnalités selon la valeur qu'elles créent vraiment.</td></tr>
+<tr><td><b>Confiance perçue</b></td><td>Détecter les freins à l'adoption : confiance dans l'IA, dans les votes et dans la protection des photos.</td></tr>
+</tbody>
+</table>
+</div>
+<p class="callout">Croiser ces mesures distingue <b>un problème d'ergonomie IHM</b> d'<b>un problème de valeur perçue ou de confiance</b> (tâche réussie, mais adhésion et confiance faibles).</p>
+</div>
+</section>
+<section aria-labelledby="d-ana" class="sec">
+<p class="label" id="d-ana">Analyse</p>
+<div class="body">
+<div class="findings">
+<h3>Un parcours fluide jusqu'au moment des résultats</h3>
+<p>Inscription, onboarding, création de profil et vote sont jugés faciles, et l'utilisabilité globale est bonne. La difficulté ressentie chute nettement à la dernière tâche, la consultation des résultats : c'est le seul endroit où le parcours casse et où les utilisateurs se retrouvent bloqués.</p>
+<h3>Trois ruptures concentrent les abandons</h3>
+<ul>
+<li>L'email de vérification fait douter dès l'inscription : son design évoque le phishing.</li>
+<li>L'attente des résultats d'analyse se fait sans aucun retour de l'application pour indiquer qu'ils sont prêts.</li>
+<li>Les résultats gratuits sont jugés trop pauvres (« trop peu d'infos en non payant », « si j'ai que ça, je désinstalle »), la différence avec l'offre premium n'est pas comprise, et des scores erronés font douter de toute l'analyse. En l'état, aucun participant ne recommanderait le service.</li>
+</ul>
+<h3>La confiance</h3>
+<p>Les participants font pleinement confiance aux votes des autres utilisateurs, beaucoup moins à l'analyse par IA et à la protection de leurs photos. Ils cherchent de la transparence sur le fonctionnement de l'IA.</p>
+<h3>Ce qui crée de la valeur va dans le même sens</h3>
+<p>Les votes de la communauté et les suggestions d'amélioration du profil sont jugés les plus utiles ; l'analyse de la bio et le classement des profils, les moins utiles. Les participants valorisent le plus ce en quoi ils ont le plus confiance : le jugement humain. L'IA doit gagner sa place en expliquant sa méthode.</p>
+</div>
+<h2 style="margin-top:12px">Problèmes prioritaires</h2>
+<p class="muted">Sévérité de S1, cosmétique, à S4, bloquant ou rupture de confiance.</p>
+<div class="tablewrap">
+<table>
+<thead><tr><th scope="col">Problème</th><th scope="col">Fréquence</th><th scope="col">Sévérité</th></tr></thead>
+<tbody>
+<tr><td>Résultats gratuits trop pauvres pour convertir</td><td>Élevée</td><td><span class="sev s4">S4</span></td></tr>
+<tr><td>Bugs de score et lisibilité des résultats</td><td>Moyenne</td><td><span class="sev s4">S4</span></td></tr>
+<tr><td>Email de vérification perçu comme un spam</td><td>Élevée</td><td><span class="sev s3">S3</span></td></tr>
+<tr><td>Pas de redirection après validation de l'email</td><td>Élevée</td><td><span class="sev s3">S3</span></td></tr>
+<tr><td>Aucun retour pendant et à la fin de l'analyse</td><td>Élevée</td><td><span class="sev s3">S3</span></td></tr>
+<tr><td>Valeur premium peu explicite</td><td>Élevée</td><td><span class="sev s3">S3</span></td></tr>
+<tr><td>Confiance insuffisante dans l'IA et les données</td><td>Moyenne à élevée</td><td><span class="sev s3">S3</span></td></tr>
+<tr><td>Incidents techniques mobiles (upload, connexion Google)</td><td>Faible à moyenne</td><td><span class="sev s3">S3</span></td></tr>
+<tr><td>« Karma » perçu comme un jugement négatif</td><td>Moyenne</td><td><span class="sev s2">S2</span></td></tr>
+<tr><td>Ciblage perçu comme trop masculin</td><td>Moyenne</td><td><span class="sev s2">S2</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section aria-labelledby="d-liv" class="sec">
+<p class="label" id="d-liv">Livrables</p>
+<div class="body">
+<p>Un rapport complet remis au fondateur : objectifs, méthodologie, résultats par objectif avec verbatims, problèmes classés par sévérité et recommandations priorisées.</p>
+<div class="gallery docs">
+<figure><img alt="Couverture et sommaire du rapport de test UX DateBetter" height="1132" loading="lazy" src="assets/datebetter-rapport-p1.webp" width="800"/><figcaption>Couverture et sommaire</figcaption></figure>
+<figure><img alt="Page du rapport : objectifs du test et design de l'étude" height="1132" loading="lazy" src="assets/datebetter-rapport-p3.webp" width="800"/><figcaption>Objectifs et méthodologie</figcaption></figure>
+<figure><img alt="Page du rapport : problèmes UX prioritaires et première recommandation" height="1132" loading="lazy" src="assets/datebetter-rapport-p13.webp" width="800"/><figcaption>Problèmes prioritaires et recommandations</figcaption></figure>
+</div>
+</div>
+</section>
+<section aria-labelledby="d-res" class="sec">
+<p class="label" id="d-res">Résultats et impact</p>
+<div class="body">
+<h2>Trois priorités absolues</h2>
+<p>Celles qui concentrent les ruptures les plus fréquentes et les plus coûteuses en conversion.</p>
+<ol class="prios">
+<li><div class="head"><span class="sev s4">R-01 · critique</span><b>Refondre l'email de vérification</b></div><p>L'email n'avait pas l'identité de DateBetter et son lien ne ramenait pas dans l'application. Des participants ont hésité à cliquer, certains l'ont pris pour du phishing : l'inscription s'arrêtait avant même d'utiliser le produit.</p><p class="act"><strong>Action :</strong> un email aux couleurs de DateBetter, un bouton clair « Confirmer mon compte » et une redirection automatique vers l'application.</p></li>
+<li><div class="head"><span class="sev s4">R-04 · critique</span><b>Rendre la valeur premium visible avant l'achat</b></div><p>La page de résultats gratuits montrait des zones vides à la place des données premium : la décision d'achat se faisait à l'aveugle, ce qui explique en grande partie l'abandon sur la dernière tâche.</p><p class="act"><strong>Action :</strong> remplacer le vide par des aperçus partiellement floutés ou des exemples avant/après, avec un message clair sur ce que débloque l'offre. Un participant l'a suggéré lui-même : <q>on pourrait flouter les données premium plutôt que du vide</q>.</p></li>
+<li><div class="head"><span class="sev s4">R-05 · critique</span><b>Corriger les erreurs d'affichage des résultats</b></div><p>Des scores « NaN », des valeurs hors bornes et des indicateurs incohérents entre deux vues : si un score est faux, toute l'analyse devient suspecte.</p><p class="act"><strong>Action :</strong> corriger ces cas et remplacer les erreurs techniques par des états explicites (« Donnée non disponible »).</p></li>
+</ol>
+<h3 style="margin-top:8px">Les autres recommandations, par priorité</h3>
+<div class="tablewrap">
+<table>
+<thead><tr><th scope="col">Recommandation</th><th scope="col">Action</th><th scope="col">Priorité</th></tr></thead>
+<tbody>
+<tr><td><span class="mono">R-02</span> Mot de passe</td><td>Autoriser le collage depuis un gestionnaire, ajouter un bouton afficher/masquer, montrer les règles avant l'envoi</td><td class="prio">Haute</td></tr>
+<tr><td><span class="mono">R-03</span> Suivi de l'analyse</td><td>Indicateur de progression avec états lisibles (« Analyse en cours », « Analyse terminée ») et notification à la fin</td><td class="prio">Haute</td></tr>
+<tr><td><span class="mono">R-06</span> Hiérarchie des résultats</td><td>Moins d'indicateurs par défaut, libellés uniformisés, infobulles courtes au toucher (« Ce score mesure… »)</td><td class="prio">Haute</td></tr>
+<tr><td><span class="mono">R-07</span> Transparence de l'IA</td><td>Section « Comment ça fonctionne ? » depuis l'accueil et les résultats : critères analysés, anonymisation, limites de l'IA</td><td class="prio">Haute</td></tr>
+<tr><td><span class="mono">R-08</span> Karma</td><td>Remplacer « karma très bas » par un état de départ neutre (« Ton karma démarre ici ») expliqué au premier affichage</td><td class="prio">Haute</td></tr>
+<tr><td><span class="mono">R-10</span> Défauts mobiles</td><td>Corriger l'upload de photos et la connexion Google sur les appareils les plus répandus</td><td class="prio">Haute</td></tr>
+<tr><td><span class="mono">R-09</span> Diversité des profils</td><td>Diversifier visuels et exemples, harmoniser les résultats quel que soit le genre, élargir les options de genre</td><td class="prio">Moyenne</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<nav aria-label="Étude suivante" class="next"><a href="#patrimoine"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M15 18l-6-6 6-6"></path></svg><span><span class="label">Précédente</span><b>Patrimoine</b></span></a><a class="r" href="#mission"><span><span class="label">Suivante</span><b>Mission+</b></span><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M9 18l6-6-6-6"></path></svg></a></nav>
+</div>
+</article>
+<!-- ======================= PROJETS ======================= -->
+<article aria-labelledby="t-projets" data-page="projets" hidden="">
+<div class="wrap">
+<div class="skills-top">
+<p class="label">Projets</p>
+<h1 class="case-title" id="t-projets">L'ensemble de mes travaux</h1>
+</div>
+<section class="projgroup"><div class="skillhead"><h2>Études de cas détaillées</h2><span class="label"></span></div><ul class="projlist cases3"><li><a class="proj case" href="#mission"><p class="label">Airbus · Skywise · application iOS · depuis 2023</p><h3>Mission+</h3><p>Co-conception du light theme, évaluation du module Library en full flight simulator et de l'IHM PERFO avant validation EASA · FAA.</p><span class="go"><span>Lire l'étude de cas</span><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li><li><a class="proj case" href="#patrimoine"><p class="label">Projet personnel · application mobile · 2026</p><h3>Patrimoine</h3><p>Une application de budget autour d'une question : combien puis-je investir ce mois-ci ? Du besoin aux écrans Figma et à l'application en ligne.</p><span class="go"><span>Lire l'étude de cas</span><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li><li><a class="proj case" href="#datebetter"><p class="label">Mission indépendante · application mobile · mars – avril 2026</p><h3>DateBetter</h3><p>Test utilisateur du parcours complet et recommandations priorisées pour comprendre pourquoi un concept utile ne convertit pas.</p><span class="go"><span>Lire l'étude de cas</span><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li></ul></section>
+<section class="projgroup others"><div class="skillhead"><h2>Autres projets</h2></div>
+<div class="subgroup"><div class="subhead"><span aria-hidden="true" class="logo"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><path d="M12 2.5c.8 0 1.4.8 1.4 1.8V9l7.1 4.2v2.1l-7.1-2.1v4.6l2.1 1.6v1.6L12 20.1l-3.5.9v-1.6l2.1-1.6v-4.6l-7.1 2.1v-2.1L10.6 9V4.3c0-1 .6-1.8 1.4-1.8z"></path></svg></span><h3>Airbus</h3><span class="label">Human Design Group · depuis 2023</span></div><ul class="projlist"><li class="proj"><p class="label">Airbus · A350</p><h3>Intégration de l’iPad dans le cockpit A350</h3><p>Analyse de risque des écarts de couleur entre écrans avioniques et iPad, effets sur l'attention visuelle, la conscience de la situation et la communication de l'équipage. Spécifications d'interaction et des échanges de données entre l'iPad et les systèmes avioniques.</p><ul class="tags"><li>Analyse de risque</li><li>Color coding</li><li>Spécifications</li></ul></li><li class="proj"><p class="label">Airbus · certification</p><h3>Procédure feu de batterie lithium dans le cockpit</h3><p>Analyse vidéo de 15 scénarios de test et analyse de risque. Rapport et présentation aux autorités pour certification, avec des recommandations d'amélioration de la procédure.</p><ul class="tags"><li>Analyse vidéo</li><li>Procédures</li><li>EASA · FAA</li></ul></li><li class="proj"><p class="label">Airbus · Mission+</p><h3>Interactions entre les commandes avioniques et l’EFB</h3><p>Définition des interactions entre les commandes d'entrée avioniques (KCCU) et l'interface iOS de l'Electronic Flight Bag.</p><ul class="tags"><li>Interaction</li><li>iOS</li><li>Avionique</li></ul></li><li class="proj"><p class="label">Airbus · Mission+</p><h3>Acronymes et abréviations de Mission+</h3><p>Définition et validation des acronymes et abréviations de l'application, pour une compréhension univoque par tous les pilotes.</p><ul class="tags"><li>Terminologie</li><li>Validation utilisateur</li></ul></li><li class="proj"><p class="label">Airbus · fournisseurs EFB</p><h3>Recommandations de conception pour les applications de cockpit</h3><p>Recherches bibliographiques et étude expérimentale, puis guidelines pour les fournisseurs d'EFB et les services Airbus : contrastes, typographie, design d'icônes, interactions tactiles en contexte aéronautique.</p><ul class="tags"><li>Guidelines</li><li>Lisibilité</li><li>Icônes</li></ul></li><li class="proj"><p class="label">Airbus · Mission+</p><h3>Focus groups et workshops avec les pilotes</h3><p>Préparation et animation de focus groups et d'ateliers avec les pilotes, en amont des phases de design.</p><ul class="tags"><li>Ateliers utilisateurs</li><li>Co-design</li></ul></li></ul></div>
+<div class="subgroup"><div class="subhead"><span aria-hidden="true" class="logo"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="13.5" r="7.5"></circle><path d="M12 13.5V9.5M10 2.5h4M18.5 6.5l1.3-1.3"></path></svg></span><h3>Entre Sportifs</h3><span class="label">UX designer et ergonome</span></div><ul class="projlist"><li class="proj"><p class="label">Entre Sportifs · mars – nov. 2023</p><h3>Application mobile pour sportifs</h3><p>Conception centrée utilisateur : entretiens, parcours utilisateurs, personas, wireframes. Tests utilisateurs et suivi après le développement.</p><ul class="tags"><li>Entretiens</li><li>Personas</li><li>Wireframes</li><li>Tests utilisateurs</li></ul></li><li class="proj"><p class="label">Entre Sportifs · mars – nov. 2023</p><h3>Équipements de courses d’obstacles</h3><p>Analyses anthropométriques et conception d'équipements, tests sur des prototypes d'obstacles.</p><ul class="tags"><li>Anthropométrie</li><li>Prototypes</li></ul></li></ul></div>
+<div class="subgroup"><div class="subhead"><span aria-hidden="true" class="logo"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><rect height="17" rx="3.5" width="17" x="3.5" y="3.5"></rect><circle cx="8.5" cy="8.5" r="1.1"></circle><circle cx="15.5" cy="15.5" r="1.1"></circle><circle cx="12" cy="12" r="1.1"></circle><circle cx="15.5" cy="8.5" r="1.1"></circle><circle cx="8.5" cy="15.5" r="1.1"></circle></svg></span><h3>Projets personnels</h3><span class="label">Hors travail</span></div><ul class="projlist"><li class="proj"><p class="label">Projet personnel</p><h3>Essor, jeu de société</h3><p>Conception des mécaniques de jeu et de la thématisation. Tests avec 15 participants et entretiens avec 6 joueurs.</p><ul class="tags"><li>Tests utilisateurs</li><li>Entretiens</li><li>Game design</li></ul></li></ul></div>
+<div class="subgroup"><div class="subhead"><span aria-hidden="true" class="logo"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></svg></span><h3>Publications</h3><span class="label">Recherche</span></div><ul class="projlist"><li class="proj"><p class="label">CHIRA 2026 · à paraître</p><h3>An Open Physiological Dataset for Stress and Cognitive Load Assessment</h3><p>Jeu de données physiologiques ouvert pour l'évaluation du stress et de la charge cognitive.</p><ul class="tags"><li>Charge cognitive</li><li>Physiologie</li></ul></li><li class="proj"><p class="label">IEEE SENSORS 2023 · Saleh et al.</p><h3>An efficient deep-learning-based solution for the recognition of relative changes in mental workload using wearable sensors</h3><p>Reconnaissance des variations de charge mentale à partir de capteurs portés.</p><ul class="tags"><li>Charge mentale</li><li>Capteurs</li></ul></li></ul></div>
+</section>
+</div>
+</article>
+<!-- ======================= À PROPOS ======================= -->
+<article aria-labelledby="t-apropos" data-page="apropos" hidden="">
+<div class="wrap">
+<div class="skills-top">
+<p class="label">À propos</p>
+<h1 class="case-title" id="t-apropos">Ergonome de formation, UX designer de métier</h1>
+</div>
+<section class="about-page">
+<p class="intro">Consultant facteurs humains et UX researcher chez Human Design Group depuis 2023, pour Airbus. Je conçois et j'évalue des interfaces de cockpit avec des designers UX/UI, des ingénieurs, des pilotes et un product manager, en SAFe et Scrum. Avant cela, j'ai été UX designer et ergonome chez Entre Sportifs.</p>
+<div class="about-main">
+<div class="projgroup">
+<div class="skillhead"><h2>Expériences</h2></div>
+<ol class="timeline">
+<li><span class="when">2023 – aujourd'hui</span><b>Human Design Group · consultant facteurs humains et UX researcher</b><p>Pour Airbus : évaluation et co-conception des modules de Mission+, intégration de l'iPad dans le cockpit A350, procédure feu de batterie lithium, interactions entre commandes avioniques et EFB. Restitution des résultats à l'EASA et à la FAA.</p></li>
+<li><span class="when">Mars – nov. 2023</span><b>Entre Sportifs · UX designer et ergonome</b><p>Application mobile pour sportifs : entretiens, parcours utilisateurs, personas, wireframes, tests utilisateurs et suivi après le développement. Conception d'équipements de courses d'obstacles.</p></li>
+</ol>
+</div>
+<div class="projgroup">
+<div class="skillhead"><h2>Formation</h2></div>
+<ol class="timeline">
+<li><span class="when">2021 – 2022</span><b>Master 2 Ergonomie cognitive, innovation technologique et facteurs humains</b><p>Université Toulouse – Jean Jaurès, mention très bien.</p></li>
+<li><span class="when">2020</span><b>Licence de psychologie</b><p>Université Paul-Valéry Montpellier 3.</p></li>
+<li><span class="when">2018</span><b>Licence STAPS</b><p>Université de Montpellier.</p></li>
+</ol>
+</div>
+</div>
+<aside class="about-side">
+<div class="skillgroup"><h3>Langues</h3><ul><li>Français, langue maternelle</li><li>Anglais courant</li><li>Espagnol intermédiaire</li></ul></div>
+<div class="skillgroup"><h3>Basé à</h3><p>Montpellier</p></div>
+<div class="skillgroup"><h3>Aller plus loin</h3><ul class="side-links"><li><a class="cv-link" href="assets/cv-marc-hoarau.pdf" rel="noopener" target="_blank">CV en PDF</a></li><li><a href="#projets">Tous les projets</a></li><li><a href="#competences">Compétences</a></li></ul></div>
+</aside>
+</section>
+</div>
+</article>
+<!-- ======================= COMPÉTENCES ======================= -->
+<article aria-labelledby="t-competences" data-page="competences" hidden="">
+<div class="wrap">
+<div class="skills-top">
+<p class="label">Compétences</p>
+<h1 class="case-title" id="t-competences">Des méthodes et des outils pour transformer des contraintes complexes en décisions de conception</h1>
+</div>
+<section aria-labelledby="sk-methodes" class="skillpanel methodes">
+<div class="skillhead"><h2 id="sk-methodes">Méthodes</h2><span class="label">Ce que je mets en œuvre</span></div>
+<div class="skillgrid">
+<div class="skillgroup"><h3>Évaluation</h3><ul><li>Tests d'utilisabilité</li><li>Évaluation formative</li><li>Évaluation heuristique (heuristiques de Nielsen)</li><li>Évaluation ergonomique (critères de Bastien et Scapin)</li><li>SUS, System Usability Scale</li><li>NASA-TLX (charge de travail cognitive)</li></ul></div>
+<div class="skillgroup"><h3>Recherche utilisateur</h3><ul><li>Entretiens utilisateurs</li><li>Focus groups</li><li>Observations de terrain</li><li>Enquête contextuelle</li></ul></div>
+<div class="skillgroup"><h3>Analyse de tâche et analyse cognitive</h3><ul><li>Analyse de tâche</li><li>HTA, analyse hiérarchique de tâche</li><li>CTA, analyse cognitive de tâche</li><li>Modèles de l'attention</li><li>Modèles de la charge cognitive</li><li>Conscience de la situation</li></ul></div>
+<div class="skillgroup"><h3>Expérimentation</h3><ul><li>Tests A/B</li><li>Tests de préférence</li><li>Conception de protocoles expérimentaux</li></ul></div>
+<div class="skillgroup"><h3>UX design</h3><ul><li>Personas</li><li>Cartes de parcours (journey maps)</li><li>Ateliers et sessions de co-design</li></ul></div>
+<div class="skillgroup"><h3>Conception centrée humain</h3><ul><li>Design thinking</li><li>Conception centrée utilisateur</li></ul></div>
+</div></section>
+<section aria-labelledby="sk-outils" class="skillpanel outils">
+<div class="skillhead"><h2 id="sk-outils">Outils</h2><span class="label">Ce que j'utilise au quotidien</span></div>
+<div class="skillgrid">
+<div class="skillgroup"><h3>Design et prototypage</h3><ul><li>Figma</li></ul></div>
+<div class="skillgroup"><h3>Projet et documentation</h3><ul><li>Notion</li><li>Jira</li><li>Confluence</li><li>Microsoft Office</li></ul></div>
+<div class="skillgroup"><h3>IA</h3><ul><li>Claude Code</li><li>GitHub Copilot</li></ul></div>
+</div></section>
+</div>
+</article>
+</main>
+<section aria-labelledby="h-contact" class="contact">
+<div class="wrap">
+<div>
+<h2 id="h-contact">Prenons contact</h2>
+<p>Après trois ans à concevoir et évaluer des interfaces pour les pilotes, j'ai envie de mettre cette exigence au service d'applications que chacun utilise au quotidien. Si mon parcours vous parle, je serai ravi d'en discuter avec vous.</p>
+</div>
+<dl>
+<dt>Email</dt><dd><span id="mail">mfg.hoarau@gmail.com</span><button class="copy" data-copy="mfg.hoarau@gmail.com" id="copy-mail" type="button">Copier</button></dd>
+<dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/marc-hoarau-1a98b7194/" rel="noopener" target="_blank">linkedin.com/in/marc-hoarau</a></dd>
+<dt>CV</dt><dd><a class="cv-link" href="assets/cv-marc-hoarau.pdf" rel="noopener" target="_blank">CV en PDF</a></dd>
+</dl>
+</div>
+</section>
+<footer class="foot"><div class="wrap">Marc Hoarau · Montpellier · Visuels Mission+ © Airbus sur skywise.com</div></footer>
+<div aria-labelledby="cv-title" aria-modal="true" class="cvmodal" hidden="" id="cv-modal" role="dialog">
+<div class="cvpanel">
+<div class="cvbar">
+<h2 id="cv-title">CV · Marc Hoarau</h2>
+<span aria-live="polite" class="cvmsg" id="cv-msg"></span>
+<a class="cvdl" download="CV_Marc_Hoarau.pdf" href="assets/cv-marc-hoarau.pdf" id="cv-dl" rel="noopener"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 20h14"></path></svg><span>Télécharger</span></a>
+<button aria-label="Fermer le CV" class="cvclose" id="cv-close" type="button"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+</div>
+<div class="cvbody"><img alt="CV de Marc Hoarau" height="1988" id="cv-img" src="" width="1405"/></div>
+</div>
+</div>
+<script>
+(function () {
+  var pages = ['accueil', 'mission', 'patrimoine', 'datebetter', 'projets', 'competences', 'apropos'];
+  var anchors = { etudes: 'accueil', enbref: 'accueil' };
+  function show() {
+    var h = (location.hash || '').replace('#', '');
+    var page = pages.indexOf(h) >= 0 ? h : (anchors[h] || 'accueil');
+    document.querySelectorAll('[data-page]').forEach(function (el) { el.hidden = el.getAttribute('data-page') !== page; });
+    document.querySelectorAll('.nav a').forEach(function (a) {
+      if (a.getAttribute('href') === '#' + page) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    if (anchors[h]) { var t = document.getElementById(h); if (t) { t.scrollIntoView(); return; } }
+    window.scrollTo(0, 0);
+    if (page !== 'accueil') { var t1 = document.querySelector('[data-page="' + page + '"] h1'); if (t1) { t1.setAttribute('tabindex', '-1'); t1.focus({ preventScroll: true }); } }
+  }
+  window.addEventListener('hashchange', show);
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#accueil"]');
+    if (a && (location.hash === '#accueil' || location.hash === '')) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  });
+  show();
+  var btn = document.getElementById('copy-mail');
+  btn.addEventListener('click', function () {
+    var v = btn.getAttribute('data-copy');
+    var done = function () { btn.textContent = 'Copié'; setTimeout(function () { btn.textContent = 'Copier'; }, 1600); };
+    try {
+      navigator.clipboard.writeText(v).then(done, function () { selectMail(); });
+    } catch (e) { selectMail(); }
+  });
+  function selectMail() { var r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+})();
+</script>
+
+<script>
+(function () {
+  var modal = document.getElementById('cv-modal'), img = document.getElementById('cv-img'), closeBtn = document.getElementById('cv-close'), dl = document.getElementById('cv-dl'), msg = document.getElementById('cv-msg');
+  var opener = null, downloads = null;
+  function open(from) {
+    opener = from; if (!img.getAttribute('src')) img.setAttribute('src', 'assets/cv-marc-hoarau.webp');
+    modal.hidden = false; document.body.classList.add('cv-open'); msg.textContent = ''; closeBtn.focus();
+  }
+  function close() { modal.hidden = true; document.body.classList.remove('cv-open'); if (opener && opener.focus) opener.focus(); }
+  document.addEventListener('click', function (e) {
+    if (document.body.classList.contains('editing')) return;
+    var a = e.target.closest && e.target.closest('a.cv-link');
+    if (a && a !== dl) { e.preventDefault(); open(a); }
+  });
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    if (e.key === 'Tab') { var f = [closeBtn, dl]; var i = f.indexOf(document.activeElement); e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus(); }
+  });
+  if (window.claude && window.claude.use) { window.claude.use('downloads').then(function (d) { downloads = d; }).catch(function () {}); }
+  dl.addEventListener('click', function (e) {
+    if (!downloads) return; // sans la capacité, le lien ouvre le PDF dans un nouvel onglet
+    e.preventDefault(); msg.textContent = '';
+    fetch('assets/cv-marc-hoarau.pdf').then(function (r) { return r.blob(); }).then(function (b) {
+      return downloads.save({ filename: 'CV_Marc_Hoarau.pdf', data: b });
+    }).then(function () { msg.textContent = 'Téléchargé'; }, function (err) {
+      var c = err && err.code;
+      if (c === 'declined') return;
+      if (c === 'rate_limited') { msg.textContent = 'Patiente un instant, puis réessaie.'; return; }
+      downloads = null; window.open(dl.href, '_blank', 'noopener');
+    });
+  });
+})();
+</script>
+</body>
+</html>
